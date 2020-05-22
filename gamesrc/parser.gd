@@ -8,23 +8,28 @@ var commands = []
 var items = []
 var characters = []
 
-
+signal autocomplete_match(matched_string)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global.parser = self
 
 func parse(input_string):
-	print(input_string)
+	""" parse input string"""
 	#TODO: Split input by spaces.
 	var sub_strings = input_string.split(" ")
-	""" parse input string"""
-	pass
+	return sub_strings
 
 func _autocomplete(input_string):
-	print("auto", input_string)
 	""" suggest completion for given substring """
-	pass
+	var candidates = []
+	var comms = ["ask", 'go', 'give']
+	var sub_strings = parse(input_string)
+	var sub = sub_strings[-1]
+	for com in comms:
+		if sub in com:
+			candidates.append(com)
+	emit_signal("autocomplete_match", candidates)
 
 func execute_command():
 	""" execute command """

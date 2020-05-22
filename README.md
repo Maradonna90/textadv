@@ -1,6 +1,10 @@
 # Structure
 * Parser
 	* has autocomplete
+		* when autocomplete is triggered
+			* show suggestion in an area below
+			* let user cycle through all suggestion with TAB
+			* user can confirm selection with ENTER
 	* tokenizes input (?)
 * TextFormatter
 	* Colorschemes for specific texts
