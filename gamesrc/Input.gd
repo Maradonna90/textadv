@@ -15,9 +15,9 @@ func _ready():
 
 func _process(delta):
 	if self.has_focus():
-		if Input.is_action_just_released("in_autocomplete"):
+		if Input.is_action_just_pressed("in_autocomplete"):
 				emit_signal("text_autocomplete", self.text)
-		if Input.is_action_just_released("in_confirm"):
+		if Input.is_action_just_pressed("in_confirm"):
 			self.text = ""
 
 
@@ -27,4 +27,5 @@ func fill_autocompletion(matched_strings):
 		self.caret_position = len(self.text)
 	if len(matched_strings) > 1:
 		emit_signal("suggest_completion", matched_strings)
+
 

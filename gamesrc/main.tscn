@@ -59,4 +59,5 @@ script = ExtResource( 1 )
 [connection signal="suggest_completion" from="Input" to="Input/AutoSuggestions" method="received_suggestions"]
 [connection signal="text_autocomplete" from="Input" to="parser" method="_autocomplete"]
 [connection signal="text_entered" from="Input" to="Output" method="append_user_input"]
+[connection signal="confirm_suggestion" from="Input/AutoSuggestions" to="Input" method="fill_autocompletion"]
 [connection signal="autocomplete_match" from="parser" to="Input" method="fill_autocompletion"]
