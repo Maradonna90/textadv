@@ -23,13 +23,14 @@ func parse(input_string):
 func _autocomplete(input_string):
 	""" suggest completion for given substring """
 	var candidates = []
+	#TODO: use actual commands
 	var comms = ["ask", 'go', 'give']
 	var sub_strings = parse(input_string)
 	var sub = sub_strings[-1]
 	for com in comms:
 		if sub in com:
 			candidates.append(com)
-	emit_signal("autocomplete_match", candidates)
+	emit_signal("autocomplete_match", candidates, sub_strings)
 
 func execute_command():
 	""" execute command """

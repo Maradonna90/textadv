@@ -21,11 +21,12 @@ func _process(delta):
 			self.text = ""
 
 
-func fill_autocompletion(matched_strings):
+func fill_autocompletion(matched_strings, sub_strings):
 	if len(matched_strings) == 1:
-		self.text = matched_strings[0]+" "
+		sub_strings[-1] = matched_strings[0]
+		self.text = utils.array_join(sub_strings, " ")+" "
 		self.caret_position = len(self.text)
 	if len(matched_strings) > 1:
-		emit_signal("suggest_completion", matched_strings)
+		emit_signal("suggest_completion", matched_strings, sub_strings)
 
 

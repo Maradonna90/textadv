@@ -1,6 +1,7 @@
 extends Control
 
 var selected = 0
+var sub_strings = null
 
 signal confirm_suggestion(string)
 
@@ -13,13 +14,14 @@ func _process(delta):
 		elif Input.is_action_just_pressed("auto_cancel"):
 			destroy()
 		elif Input.is_action_just_pressed("in_confirm"):
-			emit_signal("confirm_suggestion", [self.get_child(selected).text])
+			emit_signal("confirm_suggestion", [self.get_child(selected).text], sub_strings)
 			destroy()
 		elif Input.is_action_just_pressed("auto_prev"):
 			selected = int(max(selected-1,0)) % self.get_child_count()
 			self.get_child(selected).grab_focus()
 
-func received_suggestions(suggestions):
+func received_suggestions(suggestions, sub_strings):
+	self.sub_strings = sub_strings
 	for suggest in suggestions:
 		var button = Button.new()
 		button.text = suggest
