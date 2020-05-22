@@ -1,11 +1,4 @@
 extends LineEdit
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var autocomplete_hk = KEY_TAB
-var is_autocomplete = false
 signal text_autocomplete(input_string)
 signal suggest_completion(suggestions)
 
@@ -28,5 +21,3 @@ func fill_autocompletion(matched_strings, sub_strings):
 		self.caret_position = len(self.text)
 	if len(matched_strings) > 1:
 		emit_signal("suggest_completion", matched_strings, sub_strings)
-
-
