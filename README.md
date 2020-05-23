@@ -38,4 +38,22 @@
 	* answers: alle the possible answers
 	* branches: branching in dialog
 
-	
+* Theming
+	* Reference the colors like in terminal usage somewhere (will make theming easier)
+
+# Text-processing pipeline
+Input -> Parser -> TextFormatter -> Input
+
+## When typing
+Parser splits into substrings, check the substrings if they match something, if so, color it	
+
+## when autocomplete
+Parser splits into substrings, check last substring for an autocomplete and make suggestion/replace
+
+## when confirming
+Parser splits into substrings, checks first substring if it matches a command, and check if the other types fit the syntax
+
+## who has what
+global must have all commands in a list
+global knows the current location
+global 

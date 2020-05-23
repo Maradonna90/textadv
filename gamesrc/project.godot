@@ -38,7 +38,7 @@ size=false
 
 [gui]
 
-theme/custom="res://default_theme.tres"
+theme/custom="res://default_theme/default_theme.tres"
 
 [input]
 
