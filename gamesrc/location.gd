@@ -23,15 +23,22 @@ var exits
 # the items in the room
 var items
 
-# the npc in the room
-var npcs
+# all in the room
+var characters
 
 # signals to other objects
 signal print_text(text)
 signal play_text(text_sound)
 
 func _ready():
+	global.current_location = self
 	_on_enter()
 
 func _on_enter():
 	emit_signal("print_text", self.descripton)
+
+func _get_items():
+	return items
+	
+func _get_characters():
+	return characters

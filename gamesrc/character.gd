@@ -1,7 +1,8 @@
 extends Node
 
 #descriptive
-var char_name
+var first_name
+var last_name
 
 # stats
 var STR
