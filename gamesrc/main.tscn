@@ -1,16 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://parser.gd" type="Script" id=1]
 [ext_resource path="res://Input.gd" type="Script" id=2]
 [ext_resource path="res://Output.gd" type="Script" id=3]
 [ext_resource path="res://AutoSuggestions.gd" type="Script" id=4]
 [ext_resource path="res://location.gd" type="Script" id=5]
+[ext_resource path="res://default_theme.tres" type="Theme" id=6]
 
 [node name="Control" type="Control"]
 anchor_right = 1.875
 anchor_bottom = 1.8
 margin_right = -1682.0
 margin_bottom = -864.0
+theme = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -24,6 +26,7 @@ margin_left = -930.0
 margin_top = -205.191
 margin_right = 930.0
 margin_bottom = -181.191
+theme = ExtResource( 6 )
 context_menu_enabled = false
 shortcut_keys_enabled = false
 selecting_enabled = false
@@ -53,6 +56,7 @@ margin_left = -930.0
 margin_top = 50.0
 margin_right = 930.0
 margin_bottom = 758.0
+theme = ExtResource( 6 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

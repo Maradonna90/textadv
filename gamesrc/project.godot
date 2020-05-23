@@ -36,6 +36,10 @@ window/size/test_height=1080
 
 size=false
 
+[gui]
+
+theme/custom="res://default_theme.tres"
+
 [input]
 
 ui_accept={
