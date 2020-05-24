@@ -1,3 +1,4 @@
+extends Node
 class Location extends Node:
 	""" 
 	location describes the current location the player is in.

@@ -1,6 +1,10 @@
 class Go extends "res://commands/command.gd":
-	var _identifier = "go"
-	var _syntax = [global.ARG_TYPE.DIRECTION]
+	""" move into a specific direction (or out of a room) """
+	var identifier
+	var syntax
+	func _init():
+		identifier = "go"
+		syntax = [[global.ARG_TYPE.DIRECTION]]
 	
 	func _execute(parameters):
 		""" GO into the choosen direction

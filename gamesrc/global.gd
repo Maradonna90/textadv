@@ -15,7 +15,7 @@ var DIRECTION = ["NORTH", "SOUTH", "WEST", "EAST", "LEAVE"]
 #enum COMBAT_COMMANDS {ATTACK, DEFEND, DODGE, ABILITY, RUN}
 
 #parameter types
-enum ARG_TYPE {IDENTIFER, DIRECTION, CHARACTER, ITEM}
+enum ARG_TYPE {IDENTIFER, DIRECTION, CHARACTER, ITEM, LOCATION}
 # IDENTIFIER -> Basic Commands
 # DIRECTION -> DIRECTION
 # CHARACTER -> ask character in the room (use name as identifier, first_name)
@@ -28,11 +28,12 @@ enum CHAR_TYPE {PLAYER, NPC}
 #TODO: we need all valid commands in one list.
 
 #TODO: create command objects
-onready var go = preload("commands/GO.gd").new()
-onready var ask = preload("commands/ASK.gd").new()
-onready var take = preload("commands/TAKE.gd").new()
-onready var give = preload("commands/GIVE.gd").new()
-onready var look = preload("commands/LOOK.gd").new()
+onready var go = preload("commands/GO.gd").Go.new()
+onready var ask = preload("commands/ASK.gd").Ask.new()
+onready var take = preload("commands/TAKE.gd").Take.new()
+onready var give = preload("commands/GIVE.gd").Give.new()
+onready var look = preload("commands/LOOK.gd").Look.new()
+
 
 onready var _commands = {go.identifier : go, ask.identifier : ask,
  take.identifier : take, give.identifier : give, look.identifier : look}

@@ -37,3 +37,24 @@ static func array_slice(arr : Array, start : int = 0, end : int = 0) -> Array:
 	for i in range(end):
 		res.append(arr[i])
 	return res
+	
+static func get_item_by_name(item_name):
+	var location = global.current_location
+	var items = location._get_items()
+	var chars = location._get_characters()
+	
+	for chr in chars:
+		for item in chr.get_inventory():
+			if item._identifier == item_name:
+				return item
+	for item in items:
+		if item._identifier == item_name:
+				return item
+	return null
+	
+static func get_character_by_name(char_name):
+	var chars = global.current_location._get_characters()
+	for chr in chars:
+		if chr._first_name == char_name:
+				return chr
+	return null

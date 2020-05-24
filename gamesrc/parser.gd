@@ -24,8 +24,9 @@ func is_valid_parameter_structure(cmd, parameters):
 		return false
 	# parameter arg_type must fit cmd arg_type
 	for i in range(len(parameters)):
-		if cmd_obj.syntax[i] != utils.get_string_arg_type(parameters[i]):
-			return false
+		for synt in cmd_obj.syntax[i]:
+			if synt != utils.get_string_arg_type(parameters[i]):
+				return false
 	return true
 
 func is_valid_input(check_strings):

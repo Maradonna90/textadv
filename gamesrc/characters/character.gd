@@ -1,9 +1,9 @@
 class Character extends Node:
-	func _init(first_name, last_name, type, STR, DEX, CON, INT, WIS, CHA, items, status):
+	func _init(first_name, last_name, type, STR, DEX, CON, INT, WIS, CHA, inventory, status):
 		var _first_name = first_name
 		var _last_name = last_name
 		var _type = type
-		var _items = items
+		var _inventory = inventory
 		var _status = status
 		
 		# stats
