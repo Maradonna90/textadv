@@ -41,6 +41,14 @@
 * Theming
 	* Reference the colors like in terminal usage somewhere (will make theming easier)
 
+#TODO
+ * Command execution has to do something
+ * Player Character needed
+ * items needed
+ * npcs needed
+ * text formatter
+
+
 # Text-processing pipeline
 Input -> Parser -> TextFormatter -> Input
 

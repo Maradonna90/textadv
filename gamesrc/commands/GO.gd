@@ -8,5 +8,5 @@ var identifier = "go"
 var syntax = [global.ARG_TYPE.DIRECTION]
 
 func execute(parameters):
-	""" execute the command with the given parameters """
-	return parameters
+	""" GO into the choosen direction """
+	
