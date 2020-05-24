@@ -43,9 +43,6 @@
 
 #TODO
  * Command execution has to do something
- * Player Character needed
- * items needed
- * npcs needed
  * text formatter
 
 
