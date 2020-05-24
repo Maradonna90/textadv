@@ -1,13 +1,7 @@
-#TODO: make interface class of it?
-extends Node
-# Command name, ex: "GO", "GIVE", "SEE"
-var identifier = "give"
-
-# ex: [IDENTIFIER] [DIRECTION]
-# ex2: [IDENTIFIER] [CHARACTER] [ITEM], "GIVE INNKEEPER GOLD"
-var syntax = [global.ARG_TYPE.ITEM, global.ARG_TYPE.CHARACTER]
-
-func execute(parameters):
-	""" execute the command with the given parameters """
-	return parameters
-
+class Give extends "res://commands/command.gd":
+	var _identifier = "give"
+	var _syntax = [global.ARG_TYPE.ITEM, global.ARG_TYPE.CHARACTER]
+	
+	func _execute(parameters):
+		""" execute the command with the given parameters """
+		return parameters

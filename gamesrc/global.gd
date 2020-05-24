@@ -23,6 +23,7 @@ enum ARG_TYPE {IDENTIFER, DIRECTION, CHARACTER, ITEM}
 
 #char status
 enum STATUS {ALIVE, DEAD}
+enum CHAR_TYPE {PLAYER, NPC}
 
 #TODO: we need all valid commands in one list.
 
@@ -38,3 +39,8 @@ onready var _commands = {go.identifier : go, ask.identifier : ask,
 
 onready var current_location = null
 
+func change_location(location_name):
+	self.current_location = load("locations/"+location_name+".gd").new()
+	
+func transfer_item(source, target, item):
+	pass

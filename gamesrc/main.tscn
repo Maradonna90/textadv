@@ -75,4 +75,3 @@ script = ExtResource( 5 )
 [connection signal="text_entered" from="Input" to="Output" method="append_user_input"]
 [connection signal="confirm_suggestion" from="Input/AutoSuggestions" to="Input" method="fill_autocompletion"]
 [connection signal="autocomplete_match" from="parser" to="Input" method="fill_autocompletion"]
-[connection signal="print_text" from="location" to="Output" method="append_text"]
