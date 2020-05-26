@@ -7,6 +7,8 @@ class Take extends "res://commands/command.gd":
 		syntax = [[global.ARG_TYPE.ITEM]]
 	
 	func _execute(parameters):
-		#TODO: implement execution
 		""" execute the command with the given parameters """
-		return parameters
+		if parameters[0] in global.current_location._get_items():
+			global.transfer_item(global.current_location, global.player, parameters[0])
+		else:
+			emit_signal("error", "You can't.")

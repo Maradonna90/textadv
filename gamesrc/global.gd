@@ -41,7 +41,16 @@ onready var _commands = {go.identifier : go, ask.identifier : ask,
 onready var current_location = null
 
 func change_location(location_name):
-	self.current_location = load("locations/"+location_name+".gd").new()
+	#self.current_location = load("locations/"+location_name+".gd").new()
+	self.current_location = load("locations/location.gd").new()
 	
 func transfer_item(source, target, item):
 	pass
+	
+#init
+func _ready():
+	var desc = "Welcome to TextAdv. A marvelous adventure narrated and created by me! \n Try stuff out."
+	var loot = [load("items/item.gd").Item.new("Sword", "A regular sword.", 1.0, null)]
+	var chars = [load("characters/character.gd").Character.new("Thorgar", "Meltar", self.CHAR_TYPE.NPC,
+												10, 12, 9, 8, 10, 16, null, self.STATUS.ALIVE)]
+	self.current_location = load("locations/location.gd").Location.new(desc, null, null, ["NORTH", "SOUTH"], loot, chars)

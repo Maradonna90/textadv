@@ -7,5 +7,7 @@ class Ask extends "res://commands/command.gd":
 		syntax = [[global.ARG_TYPE.CHARACTER], [global.ARG_TYPE.CHARACTER, global.ARG_TYPE.LOCATION]]
 	
 	func _execute(parameters):
-		""" execute the command with the given parameters """
+		""" ask initiates a dialog about a specific topic
+			the character gives information based on his knowledge
+			and willingness """
 		return parameters

@@ -11,4 +11,4 @@ class Give extends "res://commands/command.gd":
 		if (parameters[0] in global.player.get_inventory()) and (parameters[1] in global.current_location._get_characters()):
 			global.transfer_item(global.player, parameters[1], parameters[0])
 		else:
-			emit_signal("error", "You can't go there.")
+			emit_signal("error", "You can't.")

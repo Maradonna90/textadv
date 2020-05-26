@@ -41,3 +41,6 @@ class Location extends Node:
 		
 	func _get_characters():
 		return self._characters
+		
+	func _get_description():
+		return self._description 
