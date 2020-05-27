@@ -1,3 +1,47 @@
+CREATE TICKETS TO KEEP TRACK AND CREATE UML AND WORKFLOW FOR GAMELOOP
+
+# Features
+	* Parser/Input
+		* have a bar that displays the current status (Name of location, Ingame-Day(time), )
+		* check for valid input (syntactically and semantically)
+		* autocomplete
+		* Syntax highlighting
+		* selective autocomplete
+	* TextFormatter
+		* highlights output text depending on type
+	* Puzzles
+	* MiniGames
+		* create a board game that works a bit like chess, but simpler
+	* Characters
+		* NPC/Player
+		* stats based on D&D
+		* Have inventory
+	* Dice
+		* rolling a dices is animated
+	* Dialog
+		* Dialogs with options
+		* Some options are based on conditions
+		* sometimes there is a timelimit to choose a option (random otherwise)
+	* Editor
+		* save rooms in JSON etc.
+		* organize whole story in a graph-like structure
+		* create scripting language for room creation
+			* HOW TO DO DIALOG BRANCHING?
+			* should support descriptions for under specific condition
+			* dialog options
+	* Commands
+		* identifier: keyword which identifies the command
+		* syntax: allowed command structure
+		* execution: what is done after all sanity checks
+
+# Game Loop
+1. User Input: User gives a valid input
+2. Player Object executes instructions
+3. NPC execute behaviour
+	3.1 If in Combat, Dialog or MiniGame go to 1.
+4. ALL timers process one tick (bombs, etc pp)
+5. Wait for next input
+
 # Structure
 * Parser
 	* has autocomplete
@@ -40,25 +84,3 @@
 
 * Theming
 	* Reference the colors like in terminal usage somewhere (will make theming easier)
-
-#TODO
- * Command execution has to do something
- * text formatter
-
-
-# Text-processing pipeline
-Input -> Parser -> TextFormatter -> Input
-
-## When typing
-Parser splits into substrings, check the substrings if they match something, if so, color it	
-
-## when autocomplete
-Parser splits into substrings, check last substring for an autocomplete and make suggestion/replace
-
-## when confirming
-Parser splits into substrings, checks first substring if it matches a command, and check if the other types fit the syntax
-
-## who has what
-global must have all commands in a list
-global knows the current location
-global 
