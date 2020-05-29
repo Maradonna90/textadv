@@ -1,12 +1,10 @@
 extends Node
 
-
-var parser
-var player
-var input
+#all important nodes
+onready var output
 
 # directions we can exit a location
-var DIRECTION = ["NORTH", "SOUTH", "WEST", "EAST", "LEAVE"]
+var DIRECTION = ["north", "south", "west", "east", "leave"]
 
 #basic non-combat commands
 #enum COMMANDS {GO, ASK, TAKE, GIVE, LOOK}
@@ -15,7 +13,8 @@ var DIRECTION = ["NORTH", "SOUTH", "WEST", "EAST", "LEAVE"]
 #enum COMBAT_COMMANDS {ATTACK, DEFEND, DODGE, ABILITY, RUN}
 
 #parameter types
-enum ARG_TYPE {IDENTIFER, DIRECTION, CHARACTER, ITEM, LOCATION}
+enum ARG_TYPE {IDENTIFIER, DIRECTION, CHARACTER, ITEM, LOCATION}
+var game_objects = {}
 # IDENTIFIER -> Basic Commands
 # DIRECTION -> DIRECTION
 # CHARACTER -> ask character in the room (use name as identifier, first_name)
@@ -33,6 +32,7 @@ onready var ask = preload("commands/ASK.gd").Ask.new()
 onready var take = preload("commands/TAKE.gd").Take.new()
 onready var give = preload("commands/GIVE.gd").Give.new()
 onready var look = preload("commands/LOOK.gd").Look.new()
+onready var textFormatter = load("textFormatter.gd").TextFormatter.new("#ff5b6a", "#f7d66a", "#9eb2b4", "#8acd8f")
 
 
 onready var _commands = {go.identifier : go, ask.identifier : ask,
@@ -40,17 +40,22 @@ onready var _commands = {go.identifier : go, ask.identifier : ask,
 
 onready var current_location = null
 
-func change_location(location_name):
-	#self.current_location = load("locations/"+location_name+".gd").new()
-	self.current_location = load("locations/location.gd").new()
+func change_location(location):
+	self.current_location = location
+	self.current_location.connect("location_enter_text", output, "append_text")
+	self.current_location._on_enter()
 	
 func transfer_item(source, target, item):
 	pass
-	
-#init
+
+func add_gameobject(type, identifier):
+	var identifier_string = global.ARG_TYPE.keys()[type]
+	game_objects[identifier_string].append(identifier)
+
 func _ready():
-	var desc = "Welcome to TextAdv. A marvelous adventure narrated and created by me! \n Try stuff out."
-	var loot = [load("items/item.gd").Item.new("Sword", "A regular sword.", 1.0, null)]
-	var chars = [load("characters/character.gd").Character.new("Thorgar", "Meltar", self.CHAR_TYPE.NPC,
-												10, 12, 9, 8, 10, 16, null, self.STATUS.ALIVE)]
-	self.current_location = load("locations/location.gd").Location.new(desc, null, null, ["NORTH", "SOUTH"], loot, chars)
+	print("global ready")
+	
+	for en in ARG_TYPE:
+		game_objects[en] = []
+	game_objects["DIRECTION"] = DIRECTION
+	game_objects["IDENTIFIER"] = _commands.keys()

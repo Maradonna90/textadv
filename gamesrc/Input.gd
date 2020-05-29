@@ -2,10 +2,6 @@ extends LineEdit
 signal text_autocomplete(input_string)
 signal suggest_completion(suggestions)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	global.input = self
-
 func _process(delta):
 	if self.has_focus():
 		if Input.is_action_just_pressed("in_autocomplete"):
@@ -21,3 +17,6 @@ func fill_autocompletion(matched_strings, sub_strings):
 		self.caret_position = len(self.text)
 	if len(matched_strings) > 1:
 		emit_signal("suggest_completion", matched_strings, sub_strings)
+
+func get_focus():
+	self.grab_focus()

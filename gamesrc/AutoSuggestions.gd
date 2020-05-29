@@ -4,6 +4,7 @@ var selected = 0
 var sub_strings = null
 
 signal confirm_suggestion(string)
+signal change_focus()
 
 #TODO: Check how to do this better maybe with containers?
 func _process(delta):
@@ -31,7 +32,7 @@ func received_suggestions(suggestions, sub_strings):
 func destroy():
 	for n in self.get_children():
 		self.remove_child(n)
-	global.input.grab_focus()
+	emit_signal("change_focus")
 	
 func any_focus():
 	if self.has_focus():

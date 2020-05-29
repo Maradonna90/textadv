@@ -1,16 +1,17 @@
-extends Node
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+class TextFormatter extends Node:
+	signal formatted_text(text)
+	var _colors
+	var bbcode_color = "[color=colorcode]{text}[/color]"
+	func _init(item_color, character_color, location_color, command_color):
+		_colors = {"IDENTIFER" : command_color, "DIRECTION" : command_color, 
+					"CHARACTER" : character_color, "ITEM" : item_color, "LOCATION" : location_color}
+		
+	func color_output(text):
+		for key in global.game_objects.keys():
+			for val in global.game_objects[key]:
+				if val in text:
+					var color = self._colors[key]
+					var color_sub = self.bbcode_color.replace("colorcode", color)
+					color_sub = color_sub.replace("{text}", val)
+					text = text.replace(val, color_sub)
+		return text

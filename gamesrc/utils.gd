@@ -16,19 +16,13 @@ static func check_parameters(parameter, length, types):
 	return true
 
 static func get_string_arg_type(string):
-	var location = global.current_location
-	var items = location._get_items()
-	var chars = location._get_characters()
-	
-	if string in global.DIRECTION:
-		return global.ARG_TYPE.DIRECTION
-	for item in items:
-		if item.identifier == string:
-			return global.ARG_TYPE.ITEM
-	for chr in chars:
-		if chr.first_name == string:
-			return global.ARG_TYPE.CHARACTER
+	var obj = global.game_objects
+	for key in global.game_objects.keys():
+		print(key)
+		if string in global.game_objects[key]:
+			return key
 	return null
+
 
 static func array_slice(arr : Array, start : int = 0, end : int = 0) -> Array:
 	if end < 0:
