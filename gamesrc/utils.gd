@@ -28,7 +28,7 @@ static func array_slice(arr : Array, start : int = 0, end : int = 0) -> Array:
 	if end < 0:
 		end = len(arr)+end
 	var res = []
-	for i in range(end):
+	for i in range(start, end):
 		res.append(arr[i])
 	return res
 	

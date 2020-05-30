@@ -27,11 +27,13 @@ func received_suggestions(suggestions, sub_strings):
 		var button = Button.new()
 		button.text = suggest
 		add_child(button)
-	self.get_child(0).grab_focus()
+	self.selected = self.get_child_count()-1
+	self.get_child(self.selected).grab_focus()
 	
 func destroy():
 	for n in self.get_children():
 		self.remove_child(n)
+	self.selected = 0
 	emit_signal("change_focus")
 	
 func any_focus():
