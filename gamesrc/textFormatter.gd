@@ -9,7 +9,7 @@ class TextFormatter extends Node:
 	func color_output(text):
 		for key in global.game_objects.keys():
 			for val in global.game_objects[key]:
-				if val in text:
+				if utils.insens_match(val, text):
 					var color = self._colors[key]
 					var color_sub = self.bbcode_color.replace("colorcode", color)
 					color_sub = color_sub.replace("{text}", val)

@@ -16,10 +16,11 @@ static func check_parameters(parameter, length, types):
 	return true
 
 static func get_string_arg_type(string):
+	print(string)
 	var obj = global.game_objects
 	for key in global.game_objects.keys():
 		print(key)
-		if string in global.game_objects[key]:
+		if list_insens_match(string, global.game_objects[key]):
 			return key
 	return null
 
@@ -52,3 +53,14 @@ static func get_character_by_name(char_name):
 		if chr._first_name == char_name:
 				return chr
 	return null
+
+static func list_insens_match(val, list):
+	for entry in list:
+		if insens_match(val, entry):
+			return true
+	return false
+
+static func insens_match(val, target):
+	if val.to_lower() in target.to_lower():
+		return true
+	return false

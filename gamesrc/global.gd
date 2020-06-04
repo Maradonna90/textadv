@@ -2,6 +2,7 @@ extends Node
 
 #all important nodes
 onready var output
+onready var player
 
 # directions we can exit a location
 var DIRECTION = ["north", "south", "west", "east", "leave"]
@@ -46,7 +47,15 @@ func change_location(location):
 	self.current_location._on_enter()
 	
 func transfer_item(source, target, item):
-	pass
+	for source_item in source._inventory:
+		print(source_item)
+		if source_item._identifier.to_lower() == item:
+			#remove item from source inv
+			source._inventory.erase(source_item)
+			#put item into target inv
+			target._inventory.append(source_item)
+			return true
+	return false
 
 func add_gameobject(type, identifier):
 	var identifier_string = global.ARG_TYPE.keys()[type]

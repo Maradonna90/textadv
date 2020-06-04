@@ -9,7 +9,7 @@ class Location:
 	var _sound_descr
 	var _ambient_sound
 	var _exits
-	var _items
+	var _inventory
 	var _characters
 	signal location_enter_text(text)
 	signal play_text(text_sound)
@@ -31,7 +31,7 @@ class Location:
 		_exits = {}
 		
 		# the items in the room
-		_items = items
+		_inventory = items
 		
 		# all in the room
 		_characters = characters
@@ -43,7 +43,7 @@ class Location:
 		emit_signal("location_enter_text", self._description)
 	
 	func _get_items():
-		return self._items
+		return self._inventory
 		
 	func _get_characters():
 		return self._characters

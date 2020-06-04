@@ -8,6 +8,10 @@ func _ready():
 	var _item = load("items/item.gd").Item
 	var _character = load("characters/character.gd").Character
 	
+	#create player
+	global.player = _character.new("Hans", "Wurst", global.CHAR_TYPE.PLAYER,
+												10, 12, 9, 8, 10, 16, [], global.STATUS.ALIVE)
+	
 	# create locations, items and characters
 	
 	#create starting location
@@ -15,7 +19,7 @@ func _ready():
 	var desc = "Welcome to TextAdv. A marvelous adventure narrated and created by me!\nTry stuff out. There is a Sword in the Ghodrin Cave. Thorgar Meltar awaits you here."
 	var loot = []
 	var chars = [_character.new("Thorgar", "Meltar", global.CHAR_TYPE.NPC,
-												10, 12, 9, 8, 10, 16, null, global.STATUS.ALIVE)]
+												10, 12, 9, 8, 10, 16, [], global.STATUS.ALIVE)]
 	start = _location.new(name, desc, null, null, 
 								loot, chars)
 	
