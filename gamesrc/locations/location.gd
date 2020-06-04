@@ -13,7 +13,7 @@ class Location:
 	var _characters
 	signal location_enter_text(text)
 	signal play_text(text_sound)
-	func _init(name, description, sound_descr, ambient_sound, exits, items, characters):
+	func _init(name, description, sound_descr, ambient_sound, items, characters):
 		_name = name
 		# The description of the location
 		_description = description
@@ -28,7 +28,7 @@ class Location:
 		#var color_palette
 		
 		# the exit map in which ways the player can leavue the location
-		_exits = exits
+		_exits = {}
 		
 		# the items in the room
 		_items = items
@@ -50,3 +50,6 @@ class Location:
 		
 	func _get_description():
 		return self._description 
+
+	func _connect_locations(direction, target):
+		self._exits[direction] = target

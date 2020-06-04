@@ -17,14 +17,17 @@ func _ready():
 	var chars = [_character.new("Thorgar", "Meltar", global.CHAR_TYPE.NPC,
 												10, 12, 9, 8, 10, 16, null, global.STATUS.ALIVE)]
 	start = _location.new(name, desc, null, null, 
-								["north"], loot, chars)
+								loot, chars)
 	
 	#create second location
 	name = "Ghodrin Cave"
 	desc = "You are in a big cave, water is running somwhere."
 	loot = [_item.new("Sword", "A regular sword.", 1.0, null)]
 	chars = []
-	_location.new(name, desc, null, null, ["south"], loot, chars)
+	var end = _location.new(name, desc, null, null, loot, chars)
 	
-	#create items
+	#create location connections
+	start._connect_locations("south", end)
+	end._connect_locations("north", start)
+	
 	global.change_location(start)
