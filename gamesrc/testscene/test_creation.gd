@@ -15,20 +15,22 @@ func _ready():
 	# create locations, items and characters
 	
 	#create starting location
-	var name = "The Starting Point"
+	var name = "Start"
 	var desc = "Welcome to TextAdv. A marvelous adventure narrated and created by me!\nTry stuff out. There is a Sword in the Ghodrin Cave. Thorgar Meltar awaits you here."
+	var detail = "A detailed description of start"
 	var loot = []
 	var chars = [_character.new("Thorgar", "Meltar", global.CHAR_TYPE.NPC,
 												10, 12, 9, 8, 10, 16, [], global.STATUS.ALIVE)]
-	start = _location.new(name, desc, null, null, 
+	start = _location.new(name, desc, detail, null, null, 
 								loot, chars)
 	
 	#create second location
 	name = "Ghodrin Cave"
 	desc = "You are in a big cave, water is running somwhere."
+	detail = "A more detailed desc"
 	loot = [_item.new("Sword", "A regular sword.", 1.0, null)]
 	chars = []
-	var end = _location.new(name, desc, null, null, loot, chars)
+	var end = _location.new(name, desc, detail, null, null, loot, chars)
 	
 	#create location connections
 	start._connect_locations("south", end)

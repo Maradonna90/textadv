@@ -35,7 +35,6 @@ onready var give = preload("commands/GIVE.gd").Give.new()
 onready var look = preload("commands/LOOK.gd").Look.new()
 onready var textFormatter = load("textFormatter.gd").TextFormatter.new("#ff5b6a", "#f7d66a", "#9eb2b4", "#8acd8f")
 
-
 onready var _commands = {go.identifier : go, ask.identifier : ask,
  take.identifier : take, give.identifier : give, look.identifier : look}
 
@@ -63,7 +62,6 @@ func add_gameobject(type, identifier):
 
 func _ready():
 	print("global ready")
-	
 	for en in ARG_TYPE:
 		game_objects[en] = []
 	game_objects["DIRECTION"] = DIRECTION

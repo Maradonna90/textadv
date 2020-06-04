@@ -14,10 +14,14 @@ func is_valid_parameter_structure(cmd, parameters):
 	# parameter arg_type must fit cmd arg_type
 	for i in range(len(parameters)):
 		print(cmd_obj)
+		print("syntax: ", cmd_obj.syntax[i])
+		var cmds = []
 		for synt in cmd_obj.syntax[i]:
-			synt = global.ARG_TYPE.keys()[synt]
-			if synt != utils.get_string_arg_type(parameters[i]):
-				return false
+			print("syntax: ", synt)
+			cmds.append(global.ARG_TYPE.keys()[synt])
+		var par_arg = utils.get_string_arg_type(parameters[i])
+		if !(par_arg in cmds):
+			return false
 	return true
 
 func is_valid_input(check_strings):

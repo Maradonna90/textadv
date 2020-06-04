@@ -6,6 +6,7 @@ class Location:
 	"""
 	var _name
 	var _description
+	var _detailed_desc
 	var _sound_descr
 	var _ambient_sound
 	var _exits
@@ -13,11 +14,14 @@ class Location:
 	var _characters
 	signal location_enter_text(text)
 	signal play_text(text_sound)
-	func _init(name, description, sound_descr, ambient_sound, items, characters):
+	func _init(name, description, detailed_desc, sound_descr, ambient_sound, items, characters):
 		_name = name
 		# The description of the location
 		_description = description
 	
+		# a detailed description which might reveal some additional information with a command
+		_detailed_desc = detailed_desc
+		
 		# the narrator reading the description
 		_sound_descr = sound_descr
 		
