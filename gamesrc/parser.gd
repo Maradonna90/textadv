@@ -38,6 +38,10 @@ func is_valid_input(check_strings):
 func parse(input_string, auto_complete=false):
 	""" parse input string"""
 	input_string = input_string.to_lower()
+	#TODO: regex check on input string and create arg_type array
+	var tokenized_input = utils.tokenize_input(input_string)
+	print(input_string)
+	print("tokenized: ", tokenized_input)
 	var sub_strings = Array(input_string.split(" "))
 	var check_strings = sub_strings
 	if auto_complete:
