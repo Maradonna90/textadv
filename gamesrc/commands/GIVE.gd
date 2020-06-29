@@ -8,7 +8,8 @@ class Give extends "res://commands/command.gd":
 	
 	func _execute(parameters):
 		""" execute the command with the given parameters """
-		if (parameters[0] in global.player.get_inventory()) and (parameters[1] in global.current_location._get_characters()):
-			global.transfer_item(global.player, parameters[1], parameters[0])
+		print("GIVE: ", parameters)
+		if (global.player._has_item(parameters[0])) and (global.current_location._char_in_location(parameters[1])):
+			global.transfer_item(global.player, global.current_location._get_char_in_location(parameters[1]), parameters[0])
 		else:
 			emit_signal("error", "You can't.")

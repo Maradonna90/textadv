@@ -34,3 +34,9 @@ class Character extends Node:
 		# values
 		_HP = 0.5 * _STR + 0.5 * _CON
 		global.add_gameobject(global.ARG_TYPE.CHARACTER, first_name+" "+last_name)
+	
+	func _has_item(item):
+		for itm in self._inventory:
+			if item == itm._identifier:
+				return true
+		return false

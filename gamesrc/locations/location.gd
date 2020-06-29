@@ -51,6 +51,18 @@ class Location:
 		
 	func _get_characters():
 		return self._characters
+	
+	func _char_in_location(name):
+		for chr in self._characters:
+			if chr._first_name+" "+chr._last_name == name:
+				return true
+		return false
+	
+	func _get_char_in_location(name):
+		for chr in self._characters:
+			if chr._first_name+" "+chr._last_name == name:
+				return chr
+		return null	
 		
 	func _get_description():
 		return self._description 

@@ -46,9 +46,10 @@ func change_location(location):
 	self.current_location._on_enter()
 	
 func transfer_item(source, target, item):
+	print("transfer_item: ", item)
 	for source_item in source._inventory:
-		print(source_item)
-		if source_item._identifier.to_lower() == item:
+		print("source_item: ", source_item._identifier)
+		if source_item._identifier.to_lower() == item.to_lower():
 			#remove item from source inv
 			source._inventory.erase(source_item)
 			#put item into target inv

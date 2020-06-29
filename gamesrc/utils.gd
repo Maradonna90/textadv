@@ -15,15 +15,15 @@ static func check_parameters(parameter, length, types):
 			return false
 	return true
 
-static func two_list_qsort(value_list, entry_list, start, end):
+static func three_list_qsort(value_list, entry_list, sub_str, start, end):
 	#quicksort
 	if start >= end:
 		return
-	var p = qsort_partition(value_list, entry_list, start, end)
-	two_list_qsort(value_list, entry_list, start, p-1)
-	two_list_qsort(value_list, entry_list, p+1, end)
+	var p = qsort_partition(value_list, entry_list, sub_str, start, end)
+	three_list_qsort(value_list, entry_list, sub_str, start, p-1)
+	three_list_qsort(value_list, entry_list, sub_str, p+1, end)
 
-static func qsort_partition(v_array, e_array, start, end):
+static func qsort_partition(v_array, e_array, sub_str, start, end):
 	var pivot = v_array[start]
 	var low = start + 1
 	var high = end
@@ -50,31 +50,44 @@ static func qsort_partition(v_array, e_array, start, end):
 			var e_arr_low = e_array[low]
 			e_array[low] = e_array[high]
 			e_array[high] = e_arr_low
+			
+			var sub_arr_low = sub_str[low]
+			sub_str[low] = sub_str[high]
+			sub_str[high] = sub_arr_low
 			# The loop continues
 		else:
 			# We exit out of the loop
 			break
 	var v_arr_start = v_array[start]
 	v_array[start] = v_array[high]
-	v_array[high] = v_array[start]
+	v_array[high] = v_arr_start
+	
 	var e_arr_start = e_array[start]
 	e_array[start] = e_array[high]
-	e_array[high] = e_array[start]
+	e_array[high] = e_arr_start
+	
+	var sub_arr_start = sub_str[start]
+	sub_str[start] = sub_str[high]
+	sub_str[high] = sub_arr_start
 	return high
 
 static func tokenize_input(string):
 	# create a tuple list and sort by index
 	var tokenz = []
 	var tokenz_idx = []
+	var sub_strings = []
 	print(string)
 	for key in global.game_objects.keys():
 		for entry in global.game_objects[key]:
-			var idx = string.find(entry)
+			var idx = string.find(entry.to_lower())
 			if idx != -1:
+				sub_strings.append(entry)
 				tokenz.append(key)
 				tokenz_idx.append(idx)
-	two_list_qsort(tokenz_idx, tokenz, 0, len(tokenz)-1)
-	return tokenz
+	print("pre sort: ", tokenz)
+	three_list_qsort(tokenz_idx, tokenz, sub_strings, 0, len(tokenz)-1)
+	print("after sort: ", tokenz)	
+	return [tokenz, sub_strings]
 
 static func get_string_arg_type(string):
 	print(string)
