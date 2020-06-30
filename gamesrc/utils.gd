@@ -97,7 +97,6 @@ static func get_string_arg_type(string):
 			return key
 	return null
 
-
 static func array_slice(arr : Array, start : int = 0, end : int = 0) -> Array:
 	if end < 0:
 		end = len(arr)+end

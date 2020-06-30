@@ -4,7 +4,7 @@ class Location:
 	this includes any sound files, the narrator, all characters and items
 	and the location description
 	"""
-	var _name
+	var _identifier
 	var _description
 	var _detailed_desc
 	var _sound_descr
@@ -14,8 +14,8 @@ class Location:
 	var _characters
 	signal location_enter_text(text)
 	signal play_text(text_sound)
-	func _init(name, description, detailed_desc, sound_descr, ambient_sound, items, characters):
-		_name = name
+	func _init(identifier, description, detailed_desc, sound_descr, ambient_sound, items, characters):
+		_identifier = identifier
 		# The description of the location
 		_description = description
 	
@@ -39,7 +39,7 @@ class Location:
 		
 		# all in the room
 		_characters = characters
-		global.add_gameobject(global.ARG_TYPE.LOCATION, name)
+		global.add_gameobject(global.ARG_TYPE.LOCATION, identifier)
 		#self.connect("location_enter_text", self, "append_text")
 	
 	func _on_enter():
