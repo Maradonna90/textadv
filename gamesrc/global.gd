@@ -33,10 +33,11 @@ onready var ask = preload("commands/ASK.gd").Ask.new()
 onready var take = preload("commands/TAKE.gd").Take.new()
 onready var give = preload("commands/GIVE.gd").Give.new()
 onready var look = preload("commands/LOOK.gd").Look.new()
+onready var talk = preload("commands/TALK.gd").Talk.new()
 onready var textFormatter = load("textFormatter.gd").TextFormatter.new("#ff5b6a", "#f7d66a", "#9eb2b4", "#8acd8f")
 
 onready var _commands = {go.identifier : go, ask.identifier : ask,
- take.identifier : take, give.identifier : give, look.identifier : look}
+ take.identifier : take, give.identifier : give, look.identifier : look, talk.identifier : talk}
 
 onready var current_location = null
 
