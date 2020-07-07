@@ -136,3 +136,7 @@ static func insens_match(val, target):
 	if val.to_lower() in target.to_lower():
 		return true
 	return false
+
+static func update_dict(original_dict, update_dict):
+	for key in update_dict.keys():
+		original_dict[key] = update_dict[key]

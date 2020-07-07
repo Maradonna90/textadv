@@ -6,10 +6,15 @@ class Combat:
 	
 	enum STATE {START, COMBAT, END}
 	
+	signal request_selection(player, targets)
+	
 	func _init(party1, party2):
 		_party1 = party1
 		_party2 = party2
 		_state = self.STATE.START
+		#self signal, target, target func
+		print("Create Combat class")
+		self.connect("request_selection", global.comba_sel, "received_player")
 	func _create_init_queue(participants):
 		#TODO roll initiative to determine order of actions
 		var dice = global.dice.new(20)
@@ -32,25 +37,21 @@ class Combat:
 						init_rolls.append(final_init)
 		return order
 				
-	func _attack(source, target):
-		#TODO perform an attack attempt from source to target
-		pass
-		
-	func _use_ability(source, target, ability):
-		#TODO uses an ability to specified target
-		pass
-		
-	func _run_attempt(source):
-		#TODO source tries to escape combat by running away
-		pass
-
 	func main_loop():
+		print("START COMBAT!")
 		#TODO: Main loop to resolve combat
 		# create init queue
 		self._queue = self._create_init_queue(self._party1+self._party2)
 		self._state = self.STATE.COMBAT
 		while self._state == self.STATE.COMBAT:
 			for chr in self._queue:
-				#GET ACTION
+				#IF Player, ask for action
+				if chr._type == global.CHAR_TYPE.PLAYER:
+					# CREATE BUTTONS
+					emit_signal("request_selection", chr, self._party1+self._party2)
+				else:
+					chr.choose_action(self._party2)
+				#ELSE do AI calculation and perform action
 				pass
+			self._state = self.STATE.END
 		#take combat turns

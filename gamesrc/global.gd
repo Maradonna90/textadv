@@ -3,6 +3,7 @@ extends Node
 #all important nodes
 onready var output
 onready var player
+onready var comba_sel
 
 # directions we can exit a location
 var DIRECTION = ["north", "south", "west", "east", "leave"]
@@ -26,7 +27,6 @@ var game_objects = {}
 # ITEM -> item in inventory OR room
 
 #char status
-enum STATUS {ALIVE, DEAD}
 enum CHAR_TYPE {PLAYER, NPC}
 
 #TODO: we need all valid commands in one list.
@@ -40,13 +40,18 @@ onready var look = preload("commands/LOOK.gd").Look.new()
 onready var talk = preload("commands/TALK.gd").Talk.new()
 onready var textFormatter = load("textFormatter.gd").TextFormatter.new("#ff5b6a", "#f7d66a", "#9eb2b4", "#8acd8f")
 
+onready var atk = preload("commands/ATTACK.gd").Attack.new()
+onready var run = preload("commands/RUN.gd").Run.new()
+onready var macig_missiles = preload("commands/abilities/MAGIC_MISSILES.gd").Magic_Missiles.new()
+
 onready var _commands = {go.identifier : go, ask.identifier : ask,
  take.identifier : take, give.identifier : give, look.identifier : look, talk.identifier : talk}
 
 onready var current_location = null
 
-#Reference the Dice class
+#Reference to optional classes
 var dice = preload("Dice.gd").Dice
+var combat = preload("Combat.gd").Combat
 
 func change_location(location):
 	self.current_location = location
@@ -68,6 +73,18 @@ func transfer_item(source, target, item):
 func add_gameobject(type, identifier):
 	var identifier_string = global.ARG_TYPE.keys()[type]
 	game_objects[identifier_string].append(identifier)
+	
+func after_command_checks():
+	print("check after exec")
+	#check if someone in the same location is aggro, if so trigger combat
+	var combat_chars = []
+	for chr in global.current_location._get_characters():
+		print("aggro: ", chr._status['aggro'])
+		if chr._status['aggro']:
+			combat_chars.append(chr)
+	if combat_chars:
+		print("try create combat")
+		global.combat.new([global.player], combat_chars).main_loop()
 
 func _ready():
 	print("global ready")

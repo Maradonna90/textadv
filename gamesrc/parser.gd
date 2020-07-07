@@ -70,6 +70,8 @@ func _autocomplete(input_string):
 	var tokenz = parse_out[0]
 	var sub_strings = parse_out[2]
 	print("_autocomplete: ", sub_strings)
+	if sub_strings == [null]:
+		return
 	var sub = sub_strings[-1]
 	# at what position are we autocompleting?
 	var pos = max(0, len(tokenz)-1)
@@ -106,3 +108,5 @@ func execute_command(input_string):
 	var cmd = global._commands[token_string[0]]
 	var parameters = token_string.slice(1, len(token_string)-1)
 	cmd._execute(parameters)
+	# DO ALL AFTER CHECKS TO SEE IF AN EVENT SHOULD BE TRIGGERED
+	global.after_command_checks()

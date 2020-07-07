@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://parser.gd" type="Script" id=1]
 [ext_resource path="res://Input.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://AutoSuggestions.gd" type="Script" id=4]
 [ext_resource path="res://testscene/test_creation.gd" type="Script" id=5]
 [ext_resource path="res://default_theme/default_theme.tres" type="Theme" id=6]
+[ext_resource path="res://CombatSelection.gd" type="Script" id=7]
 
 [node name="Control" type="Panel"]
 anchor_left = 0.499
@@ -55,6 +56,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CombatSelection" type="GridContainer" parent="Input"]
+anchor_left = 0.5
+anchor_top = 7.792
+anchor_right = 0.5
+anchor_bottom = 7.792
+margin_left = -930.0
+margin_top = -137.008
+margin_right = 930.0
+margin_bottom = -0.00801086
+columns = 4
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Output" type="RichTextLabel" parent="."]
 anchor_left = 0.499
 anchor_right = 0.499
@@ -80,4 +96,5 @@ script = ExtResource( 5 )
 [connection signal="text_entered" from="Input" to="Output" method="append_user_input"]
 [connection signal="change_focus" from="Input/AutoSuggestions" to="Input" method="get_focus"]
 [connection signal="confirm_suggestion" from="Input/AutoSuggestions" to="Input" method="fill_autocompletion"]
+[connection signal="change_focus" from="Input/CombatSelection" to="Input" method="get_focus"]
 [connection signal="autocomplete_match" from="parser" to="Input" method="fill_autocompletion"]
